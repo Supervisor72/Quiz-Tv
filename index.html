@@ -4,400 +4,109 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Test Formazione — TV e Tecnologie Display</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-pale:#f2fbf7;--amber:#854F0B;--amber-light:#FAEEDA;--red:#A32D2D;--red-light:#FCEBEB;--text:#1c1c1a;--text-sec:#5F5E5A;--border:#e0dfd8;--bg:#f8f7f4;--white:#fff;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.07)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:var(--teal);color:white;padding:2.5rem 1.5rem 2rem;text-align:center}
+.header-eyebrow{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;opacity:.75;margin-bottom:.5rem}
+.header h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:400;line-height:1.2;margin-bottom:.4rem}
+.header-sub{font-size:.9rem;opacity:.8;font-weight:300}
 
-:root {
-  --teal: #0F6E56;
-  --teal-mid: #1D9E75;
-  --teal-light: #E1F5EE;
-  --teal-pale: #f2fbf7;
-  --amber: #854F0B;
-  --amber-light: #FAEEDA;
-  --red: #A32D2D;
-  --red-light: #FCEBEB;
-  --text: #1c1c1a;
-  --text-sec: #5F5E5A;
-  --border: #e0dfd8;
-  --bg: #f8f7f4;
-  --white: #ffffff;
-  --radius: 12px;
-  --shadow: 0 2px 12px rgba(0,0,0,0.07);
-}
+/* TIMER BAR */
+.timer-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:.7rem 1.5rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:1rem}
+.timer-clock{font-size:1.1rem;font-weight:600;min-width:52px;font-variant-numeric:tabular-nums;color:var(--teal)}
+.timer-clock.warning{color:var(--amber)}
+.timer-clock.danger{color:var(--red);animation:pulse .6s infinite alternate}
+@keyframes pulse{from{opacity:1}to{opacity:.4}}
+.timer-track{flex:1;height:7px;background:#e8e7e2;border-radius:4px;overflow:hidden}
+.timer-fill{height:100%;border-radius:4px;background:var(--teal-mid);transition:width .9s linear,background .3s}
+.timer-fill.warning{background:#EF9F27}
+.timer-fill.danger{background:#E24B4A}
+.timer-label{font-size:12px;color:var(--text-sec);white-space:nowrap}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
-}
+.container{max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem}
 
-.header {
-  background: var(--teal);
-  color: white;
-  padding: 2.5rem 1.5rem 2rem;
-  text-align: center;
-}
+/* REGISTRATION */
+.reg-screen{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
+.reg-title{font-family:'DM Serif Display',serif;font-size:1.6rem;font-weight:400;margin-bottom:.4rem}
+.reg-sub{font-size:.9rem;color:var(--text-sec);margin-bottom:1.5rem;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-row{margin-bottom:1rem}
+.form-row label{display:block;font-size:13px;font-weight:500;color:var(--text-sec);margin-bottom:.4rem}
+.form-row input,.form-row select{width:100%;padding:.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);transition:border-color .15s}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--teal-mid)}
+.rules-box{background:var(--teal-light);border:1px solid #9FE1CB;border-radius:8px;padding:.9rem 1rem;margin-bottom:1.25rem;font-size:.875rem;color:#085041;line-height:1.6}
+.rules-box strong{font-weight:600}
+.start-btn{width:100%;background:var(--teal);color:white;border:none;border-radius:8px;padding:.9rem;font-size:1rem;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:background .15s}
+.start-btn:hover{background:#0a5540}
+.start-btn:disabled{opacity:.4;cursor:default}
 
-.header-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin-bottom: 0.5rem;
-}
+/* QUIZ */
+.info-box{background:var(--teal-light);border:1px solid #9FE1CB;border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.875rem;color:#085041;line-height:1.55}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.question-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.25rem;overflow:hidden;box-shadow:var(--shadow)}
+.q-header{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.25rem;border-bottom:1px solid var(--border);background:#fcfbf9}
+.q-number{font-size:11px;font-weight:600;color:var(--teal);background:var(--teal-light);padding:3px 10px;border-radius:99px}
+.q-category{font-size:11px;color:var(--text-sec)}
+.q-diff{margin-left:auto;font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;letter-spacing:.04em;text-transform:uppercase}
+.diff-base{background:var(--teal-light);color:var(--teal)}
+.diff-medio{background:var(--amber-light);color:var(--amber)}
+.diff-avanzato{background:var(--red-light);color:var(--red)}
+.q-body{padding:1.1rem 1.25rem .5rem}
+.q-text{font-size:1rem;font-weight:500;color:var(--text);line-height:1.55;margin-bottom:.9rem}
+.options{display:grid;gap:.45rem;margin-bottom:.9rem}
+.opt-btn{display:block;width:100%;text-align:left;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:.7rem 1rem;font-size:.9rem;font-family:'DM Sans',sans-serif;color:var(--text);cursor:pointer;transition:all .15s;line-height:1.4}
+.opt-btn:hover:not(:disabled){border-color:var(--teal-mid);background:var(--teal-pale);transform:translateX(3px)}
+.opt-btn.correct{background:var(--teal-light);border-color:var(--teal-mid);color:#085041;font-weight:500}
+.opt-btn.wrong{background:var(--red-light);border-color:#E24B4A;color:#501313}
+.opt-btn:disabled{cursor:default}
+.feedback{margin:.2rem 0 .75rem;padding:.7rem 1rem;border-radius:8px;font-size:.85rem;line-height:1.5;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:var(--teal-light);color:#085041;border-left:3px solid var(--teal-mid)}
+.feedback.no{background:var(--red-light);color:#501313;border-left:3px solid #E24B4A}
+.feedback strong{font-weight:600}
+.nav-bar{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0 0;gap:1rem}
+.nav-btn{background:var(--white);border:1.5px solid var(--border);border-radius:8px;padding:.6rem 1.25rem;font-size:.9rem;font-family:'DM Sans',sans-serif;color:var(--text);cursor:pointer;font-weight:500;transition:all .15s}
+.nav-btn:hover:not(:disabled){background:var(--teal-pale);border-color:var(--teal-mid)}
+.nav-btn:disabled{opacity:.3;cursor:default}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:white}
+.nav-btn.primary:hover:not(:disabled){background:#0a5540}
+.nav-info{font-size:13px;color:var(--text-sec)}
 
-.header h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
+/* RESULT */
+.score-screen{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;box-shadow:var(--shadow)}
+.score-icon{width:72px;height:72px;border-radius:50%;background:var(--teal-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2rem}
+.score-big{font-family:'DM Serif Display',serif;font-size:3.5rem;color:var(--teal);line-height:1;margin-bottom:.2rem}
+.score-total{font-size:1rem;color:var(--text-sec)}
+.verdict{display:inline-block;margin:1rem auto 0;font-size:.9rem;font-weight:600;padding:.5rem 1.25rem;border-radius:99px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1.25rem 0}
+.metric{background:var(--bg);border-radius:8px;padding:.9rem .5rem}
+.metric-val{font-size:1.5rem;font-weight:600}
+.metric-lbl{font-size:.75rem;color:var(--text-sec);margin-top:2px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.55rem;margin-top:1rem;text-align:left}
+.cat-item{background:var(--bg);border-radius:8px;padding:.7rem 1rem;border:1px solid var(--border)}
+.cat-name{font-size:11px;color:var(--text-sec);margin-bottom:3px}
+.cat-score{font-size:1rem;font-weight:600}
+.mail-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;background:var(--teal);color:white;border:none;border-radius:8px;padding:.85rem 1.75rem;font-size:1rem;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;text-decoration:none;transition:background .15s}
+.mail-btn:hover{background:#0a5540}
+.restart-btn{display:inline-block;margin-top:.75rem;background:transparent;color:var(--text-sec);border:1.5px solid var(--border);border-radius:8px;padding:.65rem 1.5rem;font-size:.9rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s}
+.restart-btn:hover{border-color:var(--teal-mid);color:var(--teal)}
+.mail-note{font-size:12px;color:var(--text-sec);margin-top:.75rem;line-height:1.5}
 
-.header-sub {
-  font-size: 0.95rem;
-  opacity: 0.8;
-  font-weight: 300;
-}
-
-.progress-wrap {
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.progress-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-sec);
-  white-space: nowrap;
-  min-width: 90px;
-}
-
-.progress-track {
-  flex: 1;
-  height: 6px;
-  background: #e8e7e2;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--teal-mid);
-  border-radius: 3px;
-  transition: width 0.4s ease;
-  width: 0%;
-}
-
-.progress-pct {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--teal);
-  min-width: 36px;
-  text-align: right;
-}
-
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
-}
-
-.question-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: opacity 0.3s;
-}
-
-.question-card.answered { opacity: 1; }
-
-.q-header {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  background: #fcfbf9;
-}
-
-.q-number {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--teal);
-  background: var(--teal-light);
-  padding: 3px 10px;
-  border-radius: 99px;
-}
-
-.q-category {
-  font-size: 11px;
-  color: var(--text-sec);
-  font-weight: 400;
-}
-
-.q-diff {
-  margin-left: auto;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 99px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.diff-base { background: var(--teal-light); color: var(--teal); }
-.diff-medio { background: var(--amber-light); color: var(--amber); }
-.diff-avanzato { background: var(--red-light); color: var(--red); }
-
-.q-body { padding: 1.25rem 1.25rem 0.5rem; }
-
-.q-text {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.55;
-  margin-bottom: 1rem;
-}
-
-.options { display: grid; gap: 0.5rem; margin-bottom: 1rem; }
-
-.opt-btn {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text);
-  cursor: pointer;
-  transition: all 0.15s;
-  line-height: 1.45;
-}
-
-.opt-btn:hover:not(:disabled) {
-  border-color: var(--teal-mid);
-  background: var(--teal-pale);
-  transform: translateX(3px);
-}
-
-.opt-btn.correct {
-  background: var(--teal-light);
-  border-color: var(--teal-mid);
-  color: #085041;
-  font-weight: 500;
-}
-
-.opt-btn.wrong {
-  background: var(--red-light);
-  border-color: #E24B4A;
-  color: #501313;
-}
-
-.opt-btn.reveal {
-  background: var(--teal-light);
-  border-color: var(--teal-mid);
-  color: #085041;
-  opacity: 0.55;
-}
-
-.opt-btn:disabled { cursor: default; }
-
-.feedback {
-  margin: 0.25rem 0 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  display: none;
-}
-
-.feedback.show { display: block; }
-.feedback.ok { background: var(--teal-light); color: #085041; border-left: 3px solid var(--teal-mid); }
-.feedback.no { background: var(--red-light); color: #501313; border-left: 3px solid #E24B4A; }
-
-.feedback strong { font-weight: 600; }
-
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 0 0;
-  gap: 1rem;
-}
-
-.nav-btn {
-  background: var(--white);
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 0.6rem 1.25rem;
-  font-size: 0.9rem;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text);
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.15s;
-}
-
-.nav-btn:hover:not(:disabled) { background: var(--teal-pale); border-color: var(--teal-mid); }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-
-.nav-btn.primary {
-  background: var(--teal);
-  border-color: var(--teal);
-  color: white;
-}
-.nav-btn.primary:hover:not(:disabled) { background: #0a5540; }
-
-.score-screen {
-  display: none;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.score-screen.show { display: block; }
-
-.score-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--teal-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
-  font-size: 2rem;
-}
-
-.score-big {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3.5rem;
-  color: var(--teal);
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-
-.score-total { font-size: 1.1rem; color: var(--text-sec); }
-.score-pct { font-size: 1rem; color: var(--text-sec); margin-top: 0.25rem; }
-
-.verdict {
-  display: inline-block;
-  margin: 1.25rem auto 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.5rem 1.25rem;
-  border-radius: 99px;
-}
-
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  margin: 1.5rem 0;
-}
-
-.metric {
-  background: var(--bg);
-  border-radius: 8px;
-  padding: 1rem 0.5rem;
-}
-
-.metric-val { font-size: 1.6rem; font-weight: 600; }
-.metric-lbl { font-size: 0.8rem; color: var(--text-sec); margin-top: 2px; }
-
-.cat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.6rem;
-  margin-top: 1.25rem;
-  text-align: left;
-}
-
-.cat-item {
-  background: var(--bg);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-}
-
-.cat-name { font-size: 11px; color: var(--text-sec); margin-bottom: 3px; }
-.cat-score { font-size: 1rem; font-weight: 600; }
-
-.restart-btn {
-  margin-top: 1.5rem;
-  background: var(--teal);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
-  font-size: 0.95rem;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.restart-btn:hover { background: #0a5540; }
-
-.info-box {
-  background: var(--teal-light);
-  border: 1px solid #9FE1CB;
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.875rem;
-  color: #085041;
-  line-height: 1.55;
-}
-
-.info-box strong { font-weight: 600; }
-
-.legend {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.leg-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-}
-
-.leg-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-@media (max-width: 500px) {
-  .metrics { grid-template-columns: repeat(3, 1fr); }
-  .header { padding: 2rem 1rem 1.5rem; }
-  .container { padding: 1.25rem 1rem 3rem; }
-}
+/* TIMEOUT OVERLAY */
+.timeout-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;align-items:center;justify-content:center}
+.timeout-overlay.show{display:flex}
+.timeout-box{background:var(--white);border-radius:var(--radius);padding:2.5rem 2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.2)}
+.timeout-icon{font-size:2.5rem;margin-bottom:.75rem}
+.timeout-title{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.5rem}
+.timeout-sub{font-size:.9rem;color:var(--text-sec);line-height:1.5;margin-bottom:1.25rem}
+.timeout-btn{background:var(--teal);color:white;border:none;border-radius:8px;padding:.8rem 1.75rem;font-size:1rem;font-family:'DM Sans',sans-serif;cursor:pointer}
+.timeout-btn:hover{background:#0a5540}
+.hidden{display:none}
 </style>
 </head>
 <body>
@@ -408,142 +117,217 @@ body {
   <div class="header-sub">Pannelli · Standard video · Gaming · Smart TV · Connettività</div>
 </div>
 
-<div class="progress-wrap">
-  <span class="progress-label" id="prog-label">Domanda 1 / 20</span>
-  <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
-  <span class="progress-pct" id="prog-pct">0%</span>
+<!-- TIMER BAR -->
+<div class="timer-wrap" id="timer-wrap" style="display:none">
+  <span class="timer-clock" id="timer-clock">5:00</span>
+  <div class="timer-track"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+  <span class="timer-label" id="timer-label">Tempo rimasto</span>
+</div>
+
+<!-- TIMEOUT OVERLAY -->
+<div class="timeout-overlay" id="timeout-overlay">
+  <div class="timeout-box">
+    <div class="timeout-icon">⏰</div>
+    <div class="timeout-title">Tempo scaduto!</div>
+    <div class="timeout-sub">I 5 minuti sono scaduti. Ogni domanda rimasta senza risposta vale <strong>-1 punto</strong>.</div>
+    <button class="timeout-btn" onclick="closeTimeout()">Vedi il risultato</button>
+  </div>
 </div>
 
 <div class="container">
 
-  <div class="info-box">
-    <strong>Istruzioni:</strong> 20 domande a risposta multipla. Seleziona la risposta che ritieni corretta — riceverai subito il feedback con la spiegazione. Il punteggio finale viene calcolato automaticamente al termine.
-    <div class="legend">
-      <div class="leg-item"><div class="leg-dot" style="background:#1D9E75"></div><span style="color:#0F6E56;font-weight:500">Base</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:#EF9F27"></div><span style="color:#854F0B;font-weight:500">Medio</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:#E24B4A"></div><span style="color:#A32D2D;font-weight:500">Avanzato</span></div>
+  <!-- STEP 1: Registration -->
+  <div id="reg-screen" class="reg-screen">
+    <div class="reg-title">Benvenuto al test!</div>
+    <div class="reg-sub">Inserisci i tuoi dati prima di iniziare. Il risultato verrà inviato automaticamente via mail al termine.</div>
+    <div class="form-grid">
+      <div class="form-row">
+        <label for="f-nome">Nome *</label>
+        <input type="text" id="f-nome" placeholder="Mario" oninput="checkForm()">
+      </div>
+      <div class="form-row">
+        <label for="f-cognome">Cognome *</label>
+        <input type="text" id="f-cognome" placeholder="Rossi" oninput="checkForm()">
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="f-store">Punto Vendita *</label>
+      <select id="f-store" onchange="checkForm()">
+        <option value="">— Seleziona il tuo punto vendita —</option>
+        <option>Fano</option>
+        <option>Monsano</option>
+        <option>Osimo</option>
+        <option>Macerata</option>
+        <option>Civitanova</option>
+        <option>Pesaro</option>
+        <option>Foligno</option>
+      </select>
+    </div>
+    <div class="rules-box">
+      <strong>Regole del test:</strong><br>
+      — 20 domande a risposta multipla<br>
+      — Tempo massimo: <strong>5 minuti</strong><br>
+      — Allo scadere dei 5 minuti ogni domanda senza risposta vale <strong>-1 punto</strong><br>
+      — Al termine riceverai il risultato e verrà inviata una mail di riepilogo
+    </div>
+    <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>Inizia il test →</button>
+  </div>
+
+  <!-- STEP 2: Quiz -->
+  <div id="quiz-wrap" class="hidden">
+    <div id="quiz-area"></div>
+    <div class="nav-bar">
+      <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled>← Precedente</button>
+      <span class="nav-info" id="nav-count">0 / 20 risposte</span>
+      <button class="nav-btn primary" id="btn-next" onclick="goNext()">Successiva →</button>
     </div>
   </div>
 
-  <div id="quiz-area"></div>
-
-  <div class="nav-bar">
-    <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled>← Precedente</button>
-    <span style="font-size:13px;color:var(--text-sec)" id="nav-count">0 / 20 risposte</span>
-    <button class="nav-btn primary" id="btn-next" onclick="goNext()">Successiva →</button>
-  </div>
-
-  <div class="score-screen" id="score-screen">
-    <div class="score-icon">🏆</div>
+  <!-- STEP 3: Result -->
+  <div id="score-screen" class="score-screen hidden">
+    <div class="score-icon" id="sc-icon">🏆</div>
     <div class="score-big" id="sc-num">0</div>
-    <div class="score-total">domande corrette su 20</div>
-    <div class="score-pct" id="sc-pct"></div>
+    <div class="score-total" id="sc-total">punti su 20</div>
     <div class="verdict" id="sc-verdict"></div>
     <div class="metrics">
       <div class="metric"><div class="metric-val" style="color:#1D9E75" id="sc-ok">0</div><div class="metric-lbl">Corrette</div></div>
       <div class="metric"><div class="metric-val" style="color:#E24B4A" id="sc-no">0</div><div class="metric-lbl">Errate</div></div>
+      <div class="metric"><div class="metric-val" style="color:#888" id="sc-skip">0</div><div class="metric-lbl">Non date</div></div>
       <div class="metric"><div class="metric-val" id="sc-pp">0%</div><div class="metric-lbl">Punteggio</div></div>
     </div>
-    <div style="font-size:13px;color:var(--text-sec);text-align:left;margin-bottom:0.5rem;font-weight:500">Risultato per categoria</div>
+    <div id="penalty-note" style="display:none;font-size:13px;color:var(--red);margin-bottom:.5rem;background:var(--red-light);padding:.5rem 1rem;border-radius:8px"></div>
+    <div style="font-size:13px;color:var(--text-sec);text-align:left;margin-bottom:.5rem;font-weight:500">Risultato per categoria</div>
     <div class="cat-grid" id="cat-grid"></div>
-    <button class="restart-btn" onclick="restart()">↺ Ricomincia il test</button>
+    <br>
+    <a class="mail-btn" id="mail-link" href="#">
+      ✉ Invia risultato per mail
+    </a>
+    <br>
+    <div class="mail-note">Si aprirà il tuo client di posta con il risultato già compilato.<br>Premi <strong>Invia</strong> per trasmettere i dati al responsabile.</div>
+    <br>
+    <button class="restart-btn" onclick="restart()">↺ Rifai il test</button>
   </div>
 
 </div>
 
 <script>
-const Q = [
-  { c:"Tipi di pannello", d:"base", t:"Cosa distingue un pannello OLED da un pannello LED/LCD tradizionale?",
-    o:["A) I pixel OLED si auto-illuminano singolarmente, senza retroilluminazione","B) L'OLED usa una retroilluminazione LED più potente","C) OLED e LED sono identici ma cambiano solo i produttori","D) L'OLED ha sempre risoluzione 8K"],
-    a:0, e:"Ogni pixel OLED è un diodo organico che emette luce autonomamente. Questo consente un nero assoluto (pixel spento = buio totale) e un contrasto infinito, impossibile da raggiungere con i pannelli LCD retroilluminati." },
-  { c:"Tipi di pannello", d:"base", t:"Cos'è la tecnologia MiniLED e qual è il suo vantaggio principale?",
-    o:["A) Un OLED di piccole dimensioni sotto i 32 pollici","B) Una retroilluminazione LED con migliaia di zone dimming molto più precise","C) Un pannello senza retroilluminazione come l'OLED","D) Un tipo di display trasparente per vetrine"],
-    a:1, e:"MiniLED utilizza LED di dimensioni ridottissime per creare centinaia o migliaia di zone di local dimming indipendenti, migliorando enormemente il contrasto rispetto ai LED tradizionali e avvicinandosi alla qualità OLED." },
-  { c:"Tipi di pannello", d:"avanzato", t:"Cosa si intende con QD-OLED e da chi è sviluppata?",
-    o:["A) Un OLED con retroilluminazione MiniLED di LG","B) Un pannello OLED abbinato a Quantum Dot, sviluppato da Samsung Display","C) Un LCD con filtro quantistico, sviluppato da Sony","D) Un OLED flessibile per TV arrotolabili"],
-    a:1, e:"QD-OLED (Samsung Display) combina un pannello OLED blu come sorgente luminosa con strati di Quantum Dot che convertono la luce in rosso e verde puri, ottenendo luminosità e copertura cromatica superiori all'OLED tradizionale WOLED." },
-  { c:"Tipi di pannello", d:"avanzato", t:"Cosa sono i pannelli MicroLED e qual è la loro differenza rispetto all'OLED?",
-    o:["A) Pannelli OLED di dimensioni ridotte, identici tecnicamente","B) Pannelli con LED inorganici auto-illuminanti: nessun burn-in, alta luminosità, lunga durata ma costo elevato","C) Una variante di LCD con retroilluminazione organica","D) Pannelli 8K con refresh rate superiore a 500Hz"],
-    a:1, e:"MicroLED usa milioni di microscopici LED inorganici come singoli pixel. Rispetto all'OLED: nessun rischio burn-in, luminosità molto superiore (fino a 10.000 nit), durata lunghissima. Limite attuale: costo altissimo e disponibilità solo in tagli grandi." },
-  { c:"Tipi di pannello", d:"medio", t:"Cos'è il WOLED e da quale azienda viene prodotto?",
-    o:["A) Un OLED con sub-pixel bianco aggiuntivo per aumentare la luminosità, prodotto da LG Display","B) Un OLED senza filtri colore, prodotto da Samsung","C) Un tipo di QLED con retroilluminazione wireless","D) Un OLED bianco usato solo per illuminazione industriale"],
-    a:0, e:"WOLED (White OLED) è la tecnologia LG Display: aggiunge un sub-pixel bianco ai tre RGB aumentando la luminosità. È il pannello montato nei TV OLED di LG, Sony Bravia XR OLED e Philips OLED." },
-  { c:"Standard video", d:"medio", t:"Quali sono i principali formati HDR presenti sui TV di ultima generazione?",
-    o:["A) Solo HDR10 e Dolby Vision","B) HDR10, HDR10+, Dolby Vision e HLG","C) HD Ready, Full HD e 4K HDR","D) Solo Dolby Vision e HLG"],
-    a:1, e:"I quattro standard HDR principali: HDR10 (statico, base universale), HDR10+ (metadati dinamici per scena, royalty-free), Dolby Vision (metadati dinamici per frame, a pagamento), HLG (per broadcast live e TV satellitare)." },
-  { c:"Standard video", d:"avanzato", t:"Qual è la differenza concreta tra Dolby Vision e HDR10+?",
-    o:["A) Non ci sono differenze pratiche, sono sinonimi","B) Dolby Vision ha metadati dinamici frame by frame e richiede licenza; HDR10+ è dinamico per scena e royalty-free","C) HDR10+ supporta l'8K, Dolby Vision è limitato al 4K","D) Dolby Vision è solo per l'audio, HDR10+ solo per il video"],
-    a:1, e:"Entrambi usano metadati dinamici. Dolby Vision richiede chip certificato e licenza ed è supportato da Apple/Netflix. HDR10+ è promosso da Samsung e Amazon ed è aperto (royalty-free)." },
-  { c:"Standard video", d:"medio", t:"Cosa garantisce la certificazione Filmmaker Mode su un televisore?",
-    o:["A) La TV può registrare contenuti in 4K tramite porta USB","B) Disattiva motion smoothing e post-processing per rispettare le intenzioni creative del regista","C) Certificazione per la riproduzione di contenuti Netflix 4K","D) Garantisce il supporto Dolby Atmos nativo"],
-    a:1, e:"Filmmaker Mode (promosso da UHD Alliance con cineasti come Christopher Nolan) disattiva il motion smoothing (effetto soap opera), la nitidezza artificiale e i miglioramenti AI, conservando frame rate, colori e aspect ratio originali del regista." },
-  { c:"Connettività", d:"medio", t:"Quali funzionalità chiave introduce lo standard HDMI 2.1 rispetto all'HDMI 2.0?",
-    o:["A) Solo la compatibilità con cavi più sottili","B) 4K@120Hz, 8K@60Hz, VRR, ALLM e eARC nativo con banda fino a 48Gbps","C) Connessione wireless senza cavi fisici","D) Riduzione del consumo energetico del 40%"],
-    a:1, e:"HDMI 2.1 porta la banda da 18 a 48Gbps, abilitando: 4K@120Hz e 8K@60Hz per gaming ultra-fluido, VRR per eliminare il tearing, ALLM (Auto Low Latency Mode) e eARC per audio lossless dalla TV alla soundbar." },
-  { c:"Connettività", d:"avanzato", t:"Cos'è l'eARC e perché è superiore all'ARC tradizionale?",
-    o:["A) Un telecomando universale via Bluetooth","B) Un canale HDMI bidirezionale che trasmette audio lossless non compresso (Dolby TrueHD, Atmos) con banda molto maggiore dell'ARC","C) Un sistema di calibrazione automatica dell'audio ambientale","D) Un adattatore per collegare cavi ottici alle nuove TV"],
-    a:1, e:"eARC (HDMI 2.1) porta la banda audio da 1Mbps (ARC) a 37Mbps. Permette Dolby TrueHD, Dolby Atmos lossless e DTS:X Master Audio tra TV e soundbar su un singolo cavo HDMI, eliminando la necessità di cavi ottici." },
-  { c:"Gaming", d:"medio", t:"Cosa significa VRR (Variable Refresh Rate) applicato a un televisore?",
-    o:["A) Risoluzione variabile in base alla distanza del telespettatore","B) La frequenza di aggiornamento del pannello si sincronizza dinamicamente con il frame rate della console o del PC","C) Sistema di risparmio energetico che riduce il refresh quando non in uso","D) Tecnologia di upscaling per contenuti a bassa risoluzione"],
-    a:1, e:"VRR sincronizza il refresh rate del pannello con i frame reali prodotti dalla GPU della console o PC. Elimina il tearing (immagine spezzata) e lo stuttering. Supportato da PS5, Xbox Series X e PC via G-Sync/FreeSync Premium." },
-  { c:"Gaming", d:"medio", t:"Cosa indica la specifica 'input lag di 1ms' in un TV gaming?",
-    o:["A) La velocità di risposta del pannello alla pressione dei tasti del telecomando","B) Il ritardo tra il segnale inviato dalla console e l'immagine visualizzata sul pannello, fondamentale per il gaming competitivo","C) Il tempo di accensione del TV dalla modalità standby","D) La latenza della connessione Wi-Fi integrata"],
-    a:1, e:"L'input lag misura il ritardo tra l'input del controller e la risposta visiva sul TV. Valori sotto i 10ms sono ottimi per gaming; 1-2ms è il top attuale (raggiunto da alcuni OLED in Game Mode). Da non confondere con il response time del pannello." },
-  { c:"Gaming", d:"avanzato", t:"Cos'è l'ALLM (Auto Low Latency Mode) e come funziona?",
-    o:["A) Modalità automatica di riduzione del volume durante le sessioni notturne","B) Il TV commuta automaticamente in Game Mode quando rileva un segnale di gioco da console compatibile, senza intervento manuale","C) Aggiornamento automatico del firmware durante i giochi","D) Sistema che regola la luminosità in base all'intensità del gioco"],
-    a:1, e:"ALLM è uno standard HDMI che permette alla console (PS5, Xbox Series X) di segnalare al TV di entrare automaticamente in Game Mode, garantendo sempre la latenza minima senza che l'utente debba cambiare impostazioni manualmente." },
-  { c:"Tecnologie AI", d:"medio", t:"A cosa serve il processore AI nei TV top di gamma (es. LG Alpha 9, Samsung Neo Quantum)?",
-    o:["A) Gestisce solo le app dello Smart TV e la navigazione dei menu","B) Ottimizza in tempo reale immagine (upscaling, riduzione rumore, luminosità) e audio riconoscendo il tipo di contenuto e le condizioni ambientali","C) Controlla la temperatura del pannello per evitare il surriscaldamento","D) Si occupa esclusivamente della connessione Wi-Fi e Bluetooth"],
-    a:1, e:"I processori AI analizzano ogni fotogramma identificando il tipo di contenuto (film, sport, gaming) e applicano ottimizzazioni specifiche: upscaling neurale, HDR remastering, noise reduction adattivo e adattamento della luminosità all'ambiente." },
-  { c:"Tecnologie AI", d:"avanzato", t:"Cosa fa concretamente l'upscaling AI su un TV moderno?",
-    o:["A) Aumenta fisicamente la risoluzione del pannello durante la visione","B) Analizza i pixel dell'immagine in ingresso con reti neurali e ricostruisce dettagli mancanti portando contenuti Full HD o inferiori verso la qualità 4K","C) Converte automaticamente i contenuti SDR in HDR aggiungendo metadati","D) Riduce il consumo energetico durante la riproduzione di contenuti in bassa risoluzione"],
-    a:1, e:"L'upscaling AI (Sony XR Cognitive Processor, LG Alpha 9, Samsung Neo Quantum) usa reti neurali addestrate su milioni di immagini per ricostruire dettagli plausibili nei contenuti a bassa risoluzione, con risultati nettamente superiori all'upscaling tradizionale." },
-  { c:"Smart TV", d:"base", t:"Quali sono i principali sistemi operativi Smart TV presenti sul mercato nel 2024-2025?",
-    o:["A) Solo Android TV e webOS","B) Google TV, Tizen (Samsung), webOS (LG), Fire TV OS (Amazon), VIDAA (Hisense)","C) Esclusivamente Tizen e Android TV","D) iOS TV, Windows TV e HarmonyOS TV"],
-    a:1, e:"Il mercato Smart TV è dominato da: Google TV (su Sony, TCL, Hisense), Tizen OS (Samsung), webOS (LG), Fire TV OS (Amazon), VIDAA (Hisense/Philips). Tutti integrano app store, assistenti vocali, casting e le principali piattaforme streaming." },
-  { c:"Tipi di pannello", d:"avanzato", t:"Cos'è il pannello OLED EX di LG Display e cosa lo migliora rispetto all'OLED standard?",
-    o:["A) Un OLED flessibile per TV arrotolabili di LG","B) Un OLED che incorpora deuterio nei materiali organici per aumentare la luminosità fino al 30% e migliorare la stabilità nel tempo","C) Un OLED con retroilluminazione MiniLED ibrida","D) Un pannello OLED da 8K con refresh a 240Hz"],
-    a:1, e:"OLED EX sostituisce l'idrogeno con il deuterio (idrogeno pesante) nello strato organico emissivo, rendendolo più stabile e luminoso (+30% rispetto all'OLED W precedente). Presente nei TV LG OLED dal 2022 in poi." },
-  { c:"Risoluzione", d:"base", t:"Quanti pixel compone un'immagine in risoluzione 8K?",
-    o:["A) 3.840 x 2.160 pixel (circa 8 megapixel)","B) 7.680 x 4.320 pixel (circa 33 megapixel)","C) 5.120 x 2.880 pixel (circa 15 megapixel)","D) 4.096 x 2.160 pixel (cinema 4K)"],
-    a:1, e:"L'8K ha una risoluzione di 7.680 x 4.320 pixel, circa 33 megapixel totali: quattro volte il 4K UHD e sedici volte il Full HD. Per godere appieno dell'8K servono schermi di grande formato (75\"+) e una distanza di visione ridotta." },
-  { c:"Standard video", d:"medio", t:"Cos'è il Dolby Atmos e come si differenzia dal Dolby Digital tradizionale?",
-    o:["A) Una versione migliorata del Dolby Digital con più canali fissi (fino a 9.1)","B) Un formato audio basato su oggetti sonori con altezza, non su canali fissi, che il decoder adatta all'impianto disponibile","C) Il formato audio esclusivo dei TV OLED Sony","D) Un sistema di equalizzazione automatica per soundbar entry level"],
-    a:1, e:"Dolby Atmos è un formato audio 3D object-based: i suoni vengono codificati come oggetti con posizione nello spazio (inclusa l'altezza) e il decoder li adatta al sistema disponibile (da 2.0 a 9.1.6+). Supportato via eARC, optical e streaming." },
-  { c:"Connettività", d:"medio", t:"Qual è il vantaggio concreto del Wi-Fi 6E integrato in un TV rispetto al Wi-Fi 5?",
-    o:["A) Nessun vantaggio pratico per uno streaming TV","B) Accesso alla banda 6GHz meno congestionata, latenza inferiore e throughput maggiore: ideale per streaming 8K e gaming cloud in ambienti con molti dispositivi connessi","C) Permette lo streaming wireless di contenuti 8K anche senza router","D) Consente di collegare fino a 20 dispositivi Bluetooth contemporaneamente"],
-    a:1, e:"Wi-Fi 6E aggiunge la banda a 6GHz, praticamente priva di interferenze. Offre throughput teorico fino a 9,6Gbps, latenza ridotta e tecnologia OFDMA per gestire più dispositivi: fondamentale per streaming 8K e gaming cloud." }
+const TOTAL_SECONDS = 300; // 5 minuti
+const PENALTY_START = 300; // penalità allo scadere dei 5 minuti
+const MAIL_TO = "d.pavoni@dml-italia.com";
+
+const Q=[
+  {c:"Tipi di pannello",d:"base",t:"Cosa distingue un pannello OLED da un pannello LED/LCD tradizionale?",o:["A) I pixel OLED si auto-illuminano singolarmente, senza retroilluminazione","B) L'OLED usa una retroilluminazione LED più potente","C) OLED e LED sono identici ma cambiano solo i produttori","D) L'OLED ha sempre risoluzione 8K"],a:0,e:"Ogni pixel OLED è un diodo organico che emette luce autonomamente. Questo consente un nero assoluto (pixel spento = buio totale) e un contrasto infinito, impossibile da raggiungere con i pannelli LCD retroilluminati."},
+  {c:"Tipi di pannello",d:"base",t:"Cos'è la tecnologia MiniLED e qual è il suo vantaggio principale?",o:["A) Un OLED di piccole dimensioni sotto i 32 pollici","B) Una retroilluminazione LED con migliaia di zone dimming molto più precise","C) Un pannello senza retroilluminazione come l'OLED","D) Un tipo di display trasparente per vetrine"],a:1,e:"MiniLED utilizza LED di dimensioni ridottissime per creare centinaia o migliaia di zone di local dimming indipendenti, migliorando enormemente il contrasto rispetto ai LED tradizionali e avvicinandosi alla qualità OLED."},
+  {c:"Tipi di pannello",d:"avanzato",t:"Cosa si intende con QD-OLED e da chi è sviluppata?",o:["A) Un OLED con retroilluminazione MiniLED di LG","B) Un pannello OLED abbinato a Quantum Dot, sviluppato da Samsung Display","C) Un LCD con filtro quantistico, sviluppato da Sony","D) Un OLED flessibile per TV arrotolabili"],a:1,e:"QD-OLED (Samsung Display) combina un pannello OLED blu come sorgente luminosa con strati di Quantum Dot che convertono la luce in rosso e verde puri, ottenendo luminosità e copertura cromatica superiori all'OLED tradizionale WOLED."},
+  {c:"Tipi di pannello",d:"avanzato",t:"Cosa sono i pannelli MicroLED e qual è la loro differenza rispetto all'OLED?",o:["A) Pannelli OLED di dimensioni ridotte, identici tecnicamente","B) Pannelli con LED inorganici auto-illuminanti: nessun burn-in, alta luminosità, lunga durata ma costo elevato","C) Una variante di LCD con retroilluminazione organica","D) Pannelli 8K con refresh rate superiore a 500Hz"],a:1,e:"MicroLED usa milioni di microscopici LED inorganici come singoli pixel. Rispetto all'OLED: nessun rischio burn-in, luminosità molto superiore (fino a 10.000 nit), durata lunghissima. Limite: costo altissimo e disponibilità solo in tagli grandi."},
+  {c:"Tipi di pannello",d:"medio",t:"Cos'è il WOLED e da quale azienda viene prodotto?",o:["A) Un OLED con sub-pixel bianco aggiuntivo per aumentare la luminosità, prodotto da LG Display","B) Un OLED senza filtri colore, prodotto da Samsung","C) Un tipo di QLED con retroilluminazione wireless","D) Un OLED bianco usato solo per illuminazione industriale"],a:0,e:"WOLED (White OLED) è la tecnologia LG Display: aggiunge un sub-pixel bianco ai tre RGB aumentando la luminosità. È il pannello montato nei TV OLED di LG, Sony Bravia XR OLED e Philips OLED."},
+  {c:"Standard video",d:"medio",t:"Quali sono i principali formati HDR presenti sui TV di ultima generazione?",o:["A) Solo HDR10 e Dolby Vision","B) HDR10, HDR10+, Dolby Vision e HLG","C) HD Ready, Full HD e 4K HDR","D) Solo Dolby Vision e HLG"],a:1,e:"I quattro standard HDR principali: HDR10 (statico), HDR10+ (metadati dinamici, royalty-free), Dolby Vision (metadati dinamici, a pagamento), HLG (per broadcast live e TV satellitare)."},
+  {c:"Standard video",d:"avanzato",t:"Qual è la differenza concreta tra Dolby Vision e HDR10+?",o:["A) Non ci sono differenze pratiche, sono sinonimi","B) Dolby Vision ha metadati dinamici frame by frame e richiede licenza; HDR10+ è dinamico per scena e royalty-free","C) HDR10+ supporta l'8K, Dolby Vision è limitato al 4K","D) Dolby Vision è solo per l'audio, HDR10+ solo per il video"],a:1,e:"Entrambi usano metadati dinamici. Dolby Vision richiede chip certificato e licenza ed è supportato da Apple/Netflix. HDR10+ è promosso da Samsung e Amazon ed è royalty-free."},
+  {c:"Standard video",d:"medio",t:"Cosa garantisce la certificazione Filmmaker Mode su un televisore?",o:["A) La TV può registrare contenuti in 4K tramite porta USB","B) Disattiva motion smoothing e post-processing per rispettare le intenzioni creative del regista","C) Certificazione per la riproduzione di contenuti Netflix 4K","D) Garantisce il supporto Dolby Atmos nativo"],a:1,e:"Filmmaker Mode (promosso da UHD Alliance con cineasti come Christopher Nolan) disattiva il motion smoothing, la nitidezza artificiale e i miglioramenti AI, conservando frame rate, colori e aspect ratio originali del regista."},
+  {c:"Connettività",d:"medio",t:"Quali funzionalità chiave introduce lo standard HDMI 2.1 rispetto all'HDMI 2.0?",o:["A) Solo la compatibilità con cavi più sottili","B) 4K@120Hz, 8K@60Hz, VRR, ALLM e eARC nativo con banda fino a 48Gbps","C) Connessione wireless senza cavi fisici","D) Riduzione del consumo energetico del 40%"],a:1,e:"HDMI 2.1 porta la banda da 18 a 48Gbps, abilitando: 4K@120Hz e 8K@60Hz, VRR per eliminare il tearing, ALLM (Auto Low Latency Mode) e eARC per audio lossless dalla TV alla soundbar."},
+  {c:"Connettività",d:"avanzato",t:"Cos'è l'eARC e perché è superiore all'ARC tradizionale?",o:["A) Un telecomando universale via Bluetooth","B) Un canale HDMI bidirezionale che trasmette audio lossless non compresso (Dolby TrueHD, Atmos) con banda molto maggiore dell'ARC","C) Un sistema di calibrazione automatica dell'audio ambientale","D) Un adattatore per collegare cavi ottici alle nuove TV"],a:1,e:"eARC (HDMI 2.1) porta la banda audio da 1Mbps (ARC) a 37Mbps. Permette Dolby TrueHD, Dolby Atmos lossless e DTS:X Master Audio tra TV e soundbar su un singolo cavo HDMI."},
+  {c:"Gaming",d:"medio",t:"Cosa significa VRR (Variable Refresh Rate) applicato a un televisore?",o:["A) Risoluzione variabile in base alla distanza del telespettatore","B) La frequenza di aggiornamento del pannello si sincronizza dinamicamente con il frame rate della console o del PC","C) Sistema di risparmio energetico che riduce il refresh quando non in uso","D) Tecnologia di upscaling per contenuti a bassa risoluzione"],a:1,e:"VRR sincronizza il refresh rate del pannello con i frame reali prodotti dalla GPU. Elimina il tearing e lo stuttering. Supportato da PS5, Xbox Series X e PC via G-Sync/FreeSync Premium."},
+  {c:"Gaming",d:"medio",t:"Cosa indica la specifica 'input lag di 1ms' in un TV gaming?",o:["A) La velocità di risposta del pannello alla pressione dei tasti del telecomando","B) Il ritardo tra il segnale inviato dalla console e l'immagine visualizzata sul pannello, fondamentale per il gaming competitivo","C) Il tempo di accensione del TV dalla modalità standby","D) La latenza della connessione Wi-Fi integrata"],a:1,e:"L'input lag misura il ritardo tra l'input del controller e la risposta visiva sul TV. Valori sotto i 10ms sono ottimi; 1-2ms è il top attuale su alcuni OLED in Game Mode."},
+  {c:"Gaming",d:"avanzato",t:"Cos'è l'ALLM (Auto Low Latency Mode) e come funziona?",o:["A) Modalità automatica di riduzione del volume durante le sessioni notturne","B) Il TV commuta automaticamente in Game Mode quando rileva un segnale di gioco da console compatibile, senza intervento manuale","C) Aggiornamento automatico del firmware durante i giochi","D) Sistema che regola la luminosità in base all'intensità del gioco"],a:1,e:"ALLM è uno standard HDMI che permette alla console (PS5, Xbox Series X) di segnalare al TV di entrare automaticamente in Game Mode, garantendo la latenza minima senza intervento manuale."},
+  {c:"Tecnologie AI",d:"medio",t:"A cosa serve il processore AI nei TV top di gamma (es. LG Alpha 9, Samsung Neo Quantum)?",o:["A) Gestisce solo le app dello Smart TV e la navigazione dei menu","B) Ottimizza in tempo reale immagine (upscaling, riduzione rumore, luminosità) e audio riconoscendo il tipo di contenuto e le condizioni ambientali","C) Controlla la temperatura del pannello per evitare il surriscaldamento","D) Si occupa esclusivamente della connessione Wi-Fi e Bluetooth"],a:1,e:"I processori AI analizzano ogni fotogramma identificando il tipo di contenuto (film, sport, gaming) e applicano ottimizzazioni specifiche: upscaling neurale, HDR remastering, noise reduction adattivo e adattamento luminosità all'ambiente."},
+  {c:"Tecnologie AI",d:"avanzato",t:"Cosa fa concretamente l'upscaling AI su un TV moderno?",o:["A) Aumenta fisicamente la risoluzione del pannello durante la visione","B) Analizza i pixel dell'immagine in ingresso con reti neurali e ricostruisce dettagli mancanti portando contenuti Full HD o inferiori verso la qualità 4K","C) Converte automaticamente i contenuti SDR in HDR aggiungendo metadati","D) Riduce il consumo energetico durante la riproduzione di contenuti in bassa risoluzione"],a:1,e:"L'upscaling AI (Sony XR Cognitive Processor, LG Alpha 9, Samsung Neo Quantum) usa reti neurali per ricostruire dettagli plausibili nei contenuti a bassa risoluzione, con risultati nettamente superiori all'upscaling tradizionale."},
+  {c:"Smart TV",d:"base",t:"Quali sono i principali sistemi operativi Smart TV presenti sul mercato nel 2024-2025?",o:["A) Solo Android TV e webOS","B) Google TV, Tizen (Samsung), webOS (LG), Fire TV OS (Amazon), VIDAA (Hisense)","C) Esclusivamente Tizen e Android TV","D) iOS TV, Windows TV e HarmonyOS TV"],a:1,e:"Il mercato Smart TV è dominato da: Google TV (su Sony, TCL, Hisense), Tizen OS (Samsung), webOS (LG), Fire TV OS (Amazon), VIDAA (Hisense/Philips). Tutti integrano app store, assistenti vocali, casting e le principali piattaforme streaming."},
+  {c:"Tipi di pannello",d:"avanzato",t:"Cos'è il pannello OLED EX di LG Display e cosa lo migliora rispetto all'OLED standard?",o:["A) Un OLED flessibile per TV arrotolabili di LG","B) Un OLED che incorpora deuterio nei materiali organici per aumentare la luminosità fino al 30% e migliorare la stabilità nel tempo","C) Un OLED con retroilluminazione MiniLED ibrida","D) Un pannello OLED da 8K con refresh a 240Hz"],a:1,e:"OLED EX sostituisce l'idrogeno con il deuterio nello strato organico emissivo, rendendolo più stabile e luminoso (+30% rispetto all'OLED W precedente). Presente nei TV LG OLED dal 2022 in poi."},
+  {c:"Risoluzione",d:"base",t:"Quanti pixel compone un'immagine in risoluzione 8K?",o:["A) 3.840 x 2.160 pixel (circa 8 megapixel)","B) 7.680 x 4.320 pixel (circa 33 megapixel)","C) 5.120 x 2.880 pixel (circa 15 megapixel)","D) 4.096 x 2.160 pixel (cinema 4K)"],a:1,e:"L'8K ha una risoluzione di 7.680 x 4.320 pixel, circa 33 megapixel totali: quattro volte il 4K UHD e sedici volte il Full HD. Per goderne appieno servono schermi di grande formato (75\"+)."},
+  {c:"Standard video",d:"medio",t:"Cos'è il Dolby Atmos e come si differenzia dal Dolby Digital tradizionale?",o:["A) Una versione migliorata del Dolby Digital con più canali fissi (fino a 9.1)","B) Un formato audio basato su oggetti sonori con altezza, non su canali fissi, che il decoder adatta all'impianto disponibile","C) Il formato audio esclusivo dei TV OLED Sony","D) Un sistema di equalizzazione automatica per soundbar entry level"],a:1,e:"Dolby Atmos è un formato audio 3D object-based: i suoni vengono codificati come oggetti con posizione nello spazio (inclusa l'altezza) e il decoder li adatta al sistema disponibile (da 2.0 a 9.1.6+). Supportato via eARC, optical e streaming."},
+  {c:"Connettività",d:"medio",t:"Qual è il vantaggio concreto del Wi-Fi 6E integrato in un TV rispetto al Wi-Fi 5?",o:["A) Nessun vantaggio pratico per uno streaming TV","B) Accesso alla banda 6GHz meno congestionata, latenza inferiore e throughput maggiore: ideale per streaming 8K e gaming cloud in ambienti con molti dispositivi connessi","C) Permette lo streaming wireless di contenuti 8K anche senza router","D) Consente di collegare fino a 20 dispositivi Bluetooth contemporaneamente"],a:1,e:"Wi-Fi 6E aggiunge la banda a 6GHz, praticamente priva di interferenze. Offre throughput teorico fino a 9,6Gbps, latenza ridotta e tecnologia OFDMA per gestire più dispositivi: fondamentale per streaming 8K e gaming cloud."}
 ];
 
-let cur = 0;
-let answers = new Array(Q.length).fill(null);
-let done = new Array(Q.length).fill(false);
+let cur=0, answers=new Array(Q.length).fill(null), done=new Array(Q.length).fill(false);
+let userData={}, timerInterval=null, secondsLeft=TOTAL_SECONDS, timedOut=false, penaltyApplied=false;
 
-function render() {
-  const q = Q[cur];
-  const diffMap = { base: 'diff-base', medio: 'diff-medio', avanzato: 'diff-avanzato' };
-  const diffLabel = { base: 'Base', medio: 'Medio', avanzato: 'Avanzato' };
+function checkForm(){
+  const n=document.getElementById('f-nome').value.trim();
+  const c=document.getElementById('f-cognome').value.trim();
+  const s=document.getElementById('f-store').value;
+  document.getElementById('start-btn').disabled=!(n&&c&&s);
+}
 
-  const optsHtml = q.o.map((o, i) => {
-    let cls = 'opt-btn';
-    if (done[cur]) {
-      if (i === q.a) cls += ' correct';
-      else if (i === answers[cur] && answers[cur] !== q.a) cls += ' wrong';
+function startQuiz(){
+  userData={
+    nome: document.getElementById('f-nome').value.trim(),
+    cognome: document.getElementById('f-cognome').value.trim(),
+    puntoVendita: document.getElementById('f-store').value,
+    dataOra: new Date().toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric'})+' alle '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})
+  };
+  document.getElementById('reg-screen').classList.add('hidden');
+  document.getElementById('quiz-wrap').classList.remove('hidden');
+  document.getElementById('timer-wrap').style.display='flex';
+  startTimer();
+  render();
+}
+
+function startTimer(){
+  secondsLeft = TOTAL_SECONDS;
+  updateTimerDisplay();
+  timerInterval = setInterval(()=>{
+    secondsLeft--;
+    updateTimerDisplay();
+    if(secondsLeft<=0){ clearInterval(timerInterval); triggerTimeout(); }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const m=Math.floor(secondsLeft/60);
+  const s=secondsLeft%60;
+  const label = m+':'+(s<10?'0':'')+s;
+  const clock=document.getElementById('timer-clock');
+  const fill=document.getElementById('timer-fill');
+  const timerLabel=document.getElementById('timer-label');
+  clock.textContent=label;
+  const pct=(secondsLeft/TOTAL_SECONDS)*100;
+  fill.style.width=pct+'%';
+  if(secondsLeft<=60){
+    clock.className='timer-clock danger';
+    fill.className='timer-fill danger';
+    timerLabel.textContent='Ultimo minuto! Rispondi a tutte le domande';
+    timerLabel.style.color='var(--red)';
+  } else if(secondsLeft<=120){
+    clock.className='timer-clock warning';
+    fill.className='timer-fill warning';
+    timerLabel.textContent='Meno di 2 minuti! Sbrigati';
+    timerLabel.style.color='var(--amber)';
+  } else {
+    clock.className='timer-clock';
+    fill.className='timer-fill';
+    timerLabel.textContent='Tempo rimasto';
+    timerLabel.style.color='';
+  }
+}
+
+function triggerTimeout(){
+  timedOut=true;
+  document.getElementById('timeout-overlay').classList.add('show');
+}
+
+function closeTimeout(){
+  document.getElementById('timeout-overlay').classList.remove('show');
+  showResult();
+}
+
+function render(){
+  const q=Q[cur];
+  const diffMap={base:'diff-base',medio:'diff-medio',avanzato:'diff-avanzato'};
+  const diffLabel={base:'Base',medio:'Medio',avanzato:'Avanzato'};
+  const optsHtml=q.o.map((o,i)=>{
+    let cls='opt-btn';
+    if(done[cur]){
+      if(i===q.a) cls+=' correct';
+      else if(i===answers[cur]&&answers[cur]!==q.a) cls+=' wrong';
     }
-    return `<button class="${cls}" ${done[cur] ? 'disabled' : ''} onclick="pick(${i})">${o}</button>`;
+    return `<button class="${cls}" ${done[cur]?'disabled':''} onclick="pick(${i})">${o}</button>`;
   }).join('');
-
-  const fbCls = done[cur] ? (answers[cur] === q.a ? 'feedback ok show' : 'feedback no show') : 'feedback';
-  const fbText = done[cur]
-    ? (answers[cur] === q.a
-        ? `<strong>Corretto!</strong> ${q.e}`
-        : `<strong>Risposta errata.</strong> ${q.e}`)
-    : '';
-
-  document.getElementById('quiz-area').innerHTML = `
-    <div class="question-card ${done[cur] ? 'answered' : ''}">
+  const fbCls=done[cur]?(answers[cur]===q.a?'feedback ok show':'feedback no show'):'feedback';
+  const fbText=done[cur]?(answers[cur]===q.a?`<strong>Corretto!</strong> ${q.e}`:`<strong>Risposta errata.</strong> ${q.e}`):'';
+  document.getElementById('quiz-area').innerHTML=`
+    <div class="question-card">
       <div class="q-header">
-        <span class="q-number">Domanda ${cur + 1}</span>
+        <span class="q-number">Domanda ${cur+1} / ${Q.length}</span>
         <span class="q-category">${q.c}</span>
         <span class="q-diff ${diffMap[q.d]}">${diffLabel[q.d]}</span>
       </div>
@@ -552,91 +336,117 @@ function render() {
         <div class="options">${optsHtml}</div>
         <div class="${fbCls}">${fbText}</div>
       </div>
-    </div>
-  `;
+    </div>`;
+  const answered=answers.filter(a=>a!==null).length;
+  const pct=Math.round(((cur+1)/Q.length)*100);
+  document.getElementById('nav-count').textContent=`${answered} / ${Q.length} risposte`;
+  document.getElementById('btn-prev').disabled=cur===0;
+  const nb=document.getElementById('btn-next');
+  if(cur===Q.length-1){nb.textContent='Vedi risultato →';nb.onclick=()=>{if(!timedOut){clearInterval(timerInterval);}showResult();};}
+  else{nb.textContent='Successiva →';nb.onclick=()=>go(1);}
+}
 
-  const answered = answers.filter(a => a !== null).length;
-  const pct = Math.round(((cur + 1) / Q.length) * 100);
-  document.getElementById('prog-label').textContent = `Domanda ${cur + 1} / ${Q.length}`;
-  document.getElementById('prog-fill').style.width = pct + '%';
-  document.getElementById('prog-pct').textContent = pct + '%';
-  document.getElementById('nav-count').textContent = `${answered} / ${Q.length} risposte`;
-  document.getElementById('btn-prev').disabled = cur === 0;
+function pick(i){if(done[cur])return;answers[cur]=i;done[cur]=true;render();}
+function go(dir){cur=Math.max(0,Math.min(Q.length-1,cur+dir));render();}
+function goNext(){go(1);}
 
-  const nextBtn = document.getElementById('btn-next');
-  if (cur === Q.length - 1) {
-    nextBtn.textContent = 'Vedi risultato →';
-    nextBtn.onclick = showResult;
-  } else {
-    nextBtn.textContent = 'Successiva →';
-    nextBtn.onclick = () => go(1);
+function showResult(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').classList.add('hidden');
+  document.getElementById('timer-wrap').style.display='none';
+  const ss=document.getElementById('score-screen');
+  ss.classList.remove('hidden');
+
+  const skipped=answers.filter(a=>a===null).length;
+  const correct=answers.filter((a,i)=>a!==null&&a===Q[i].a).length;
+  const wrong=answers.filter((a,i)=>a!==null&&a!==Q[i].a).length;
+
+  // Penalità: -1 per ogni risposta non data solo se tempo scaduto (5 min)
+  const penaltyPoints = timedOut ? skipped : 0;
+  const finalScore = Math.max(0, correct - penaltyPoints);
+  const pct = Math.round(finalScore/Q.length*100);
+
+  document.getElementById('sc-num').textContent=finalScore;
+  document.getElementById('sc-ok').textContent=correct;
+  document.getElementById('sc-no').textContent=wrong;
+  document.getElementById('sc-skip').textContent=skipped;
+  document.getElementById('sc-pp').textContent=pct+'%';
+
+  if(penaltyPoints>0){
+    const pn=document.getElementById('penalty-note');
+    pn.style.display='block';
+    pn.textContent=`Penalità tempo: -${penaltyPoints} punt${penaltyPoints>1?'i':'o'} per ${penaltyPoints} risposta${penaltyPoints>1?'e':''} non data${penaltyPoints>1?'e':''}`;
   }
-}
 
-function pick(i) {
-  if (done[cur]) return;
-  answers[cur] = i;
-  done[cur] = true;
-  render();
-}
+  let verdict,vs;
+  if(pct>=85){verdict='🏅 Eccellente — ottima preparazione!';vs='background:var(--teal-light);color:var(--teal)';}
+  else if(pct>=65){verdict='👍 Buono — qualche area da approfondire';vs='background:var(--amber-light);color:var(--amber)';}
+  else{verdict='📚 Da ripassare — formazione consigliata';vs='background:var(--red-light);color:var(--red)';}
+  const v=document.getElementById('sc-verdict');
+  v.textContent=verdict;v.style.cssText=vs;
 
-function go(dir) {
-  cur = Math.max(0, Math.min(Q.length - 1, cur + dir));
-  render();
-}
-
-function goNext() { go(1); }
-
-function showResult() {
-  document.getElementById('quiz-area').style.display = 'none';
-  document.querySelector('.nav-bar').style.display = 'none';
-  document.querySelector('.info-box').style.display = 'none';
-  document.getElementById('score-screen').classList.add('show');
-
-  const correct = answers.filter((a, i) => a === Q[i].a).length;
-  const pct = Math.round(correct / Q.length * 100);
-
-  document.getElementById('sc-num').textContent = correct;
-  document.getElementById('sc-pct').textContent = pct + '% di risposte corrette';
-  document.getElementById('sc-ok').textContent = correct;
-  document.getElementById('sc-no').textContent = Q.length - correct;
-  document.getElementById('sc-pp').textContent = pct + '%';
-
-  let verdict, vs;
-  if (pct >= 85) { verdict = '🏅 Eccellente — pronto per il reparto!'; vs = 'background:var(--teal-light);color:var(--teal)'; }
-  else if (pct >= 65) { verdict = '👍 Buono — qualche area da approfondire'; vs = 'background:var(--amber-light);color:var(--amber)'; }
-  else { verdict = '📚 Da ripassare — formazione consigliata'; vs = 'background:var(--red-light);color:var(--red)'; }
-
-  const v = document.getElementById('sc-verdict');
-  v.textContent = verdict; v.style.cssText = vs;
-
-  const cats = [...new Set(Q.map(q => q.c))];
-  document.getElementById('cat-grid').innerHTML = cats.map(c => {
-    const idx = Q.map((q, i) => q.c === c ? i : -1).filter(i => i >= 0);
-    const ok = idx.filter(i => answers[i] === Q[i].a).length;
-    const tot = idx.length;
-    const p = Math.round(ok / tot * 100);
-    const col = p >= 80 ? 'var(--teal)' : p >= 60 ? 'var(--amber)' : 'var(--red)';
-    return `<div class="cat-item"><div class="cat-name">${c}</div><div class="cat-score" style="color:${col}">${ok}/${tot} <span style="font-size:0.8rem;font-weight:400">(${p}%)</span></div></div>`;
+  const cats=[...new Set(Q.map(q=>q.c))];
+  document.getElementById('cat-grid').innerHTML=cats.map(c=>{
+    const idx=Q.map((q,i)=>q.c===c?i:-1).filter(i=>i>=0);
+    const ok=idx.filter(i=>answers[i]===Q[i].a).length;
+    const tot=idx.length;
+    const p=Math.round(ok/tot*100);
+    const col=p>=80?'var(--teal)':p>=60?'var(--amber)':'var(--red)';
+    return `<div class="cat-item"><div class="cat-name">${c}</div><div class="cat-score" style="color:${col}">${ok}/${tot} <span style="font-size:.8rem;font-weight:400">(${p}%)</span></div></div>`;
   }).join('');
 
-  document.getElementById('prog-fill').style.width = '100%';
-  document.getElementById('prog-pct').textContent = '100%';
-  document.getElementById('prog-label').textContent = 'Completato!';
+  // Costruisci email mailto
+  buildMailLink(finalScore, correct, wrong, skipped, penaltyPoints, pct, cats);
 }
 
-function restart() {
-  cur = 0;
-  answers = new Array(Q.length).fill(null);
-  done = new Array(Q.length).fill(false);
-  document.getElementById('quiz-area').style.display = 'block';
-  document.querySelector('.nav-bar').style.display = 'flex';
-  document.querySelector('.info-box').style.display = 'block';
-  document.getElementById('score-screen').classList.remove('show');
-  render();
+function buildMailLink(finalScore, correct, wrong, skipped, penalty, pct, cats){
+  const u=userData;
+  const nomeCompleto=u.nome+' '+u.cognome;
+
+  let catLines='';
+  cats.forEach(c=>{
+    const idx=Q.map((q,i)=>q.c===c?i:-1).filter(i=>i>=0);
+    const ok=idx.filter(i=>answers[i]===Q[i].a).length;
+    catLines+=`  • ${c}: ${ok}/${idx.length}\n`;
+  });
+
+  const subject=encodeURIComponent(`[Test TV] ${nomeCompleto} — ${u.puntoVendita} — ${pct}%`);
+
+  let body=`RISULTATO TEST DI FORMAZIONE — TV e Tecnologie Display\n`;
+  body+=`${'='.repeat(52)}\n\n`;
+  body+=`Nome:            ${nomeCompleto}\n`;
+  body+=`Punto vendita:   ${u.puntoVendita}\n`;
+  body+=`Data:            ${u.dataOra}\n\n`;
+  body+=`PUNTEGGIO FINALE: ${finalScore} / 20  (${pct}%)\n\n`;
+  body+=`Risposte corrette:      ${correct}\n`;
+  body+=`Risposte errate:        ${wrong}\n`;
+  body+=`Risposte non date:      ${skipped}\n`;
+  if(penalty>0) body+=`Penalità tempo:         -${penalty}\n`;
+  body+=`\nRISULTATO PER CATEGORIA:\n${catLines}\n`;
+
+  let valutazione='';
+  if(pct>=85) valutazione='ECCELLENTE';
+  else if(pct>=65) valutazione='BUONO';
+  else valutazione='DA RIPASSARE';
+  body+=`Valutazione: ${valutazione}\n\n`;
+  body+=`— Mail generata automaticamente dal quiz di formazione DML Italia`;
+
+  document.getElementById('mail-link').href=`mailto:${MAIL_TO}?subject=${subject}&body=${encodeURIComponent(body)}`;
 }
 
-render();
+function restart(){
+  cur=0;answers=new Array(Q.length).fill(null);done=new Array(Q.length).fill(false);
+  timedOut=false;penaltyApplied=false;secondsLeft=TOTAL_SECONDS;
+  clearInterval(timerInterval);
+  document.getElementById('score-screen').classList.add('hidden');
+  document.getElementById('penalty-note').style.display='none';
+  document.getElementById('reg-screen').classList.remove('hidden');
+  document.getElementById('timer-wrap').style.display='none';
+  document.getElementById('f-nome').value='';
+  document.getElementById('f-cognome').value='';
+  document.getElementById('f-store').value='';
+  document.getElementById('start-btn').disabled=true;
+}
 </script>
 </body>
 </html>
